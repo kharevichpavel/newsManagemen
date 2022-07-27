@@ -4,6 +4,7 @@ import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.DaoProvider;
 import by.htp.ex.dao.IUserDAO;
+import by.htp.ex.model.UserSQLException;
 import by.htp.ex.service.ServiceException;
 import by.htp.ex.util.validation.UserDataValidation;
 import by.htp.ex.util.validation.ValidationProvider;
@@ -15,7 +16,7 @@ public class UserServiceImpl implements IUserService{
 	private final UserDataValidation userDataValidation = ValidationProvider.getInstance().getUserDataValidation();
 	
 	@Override
-	public String signIn(String login, String password) throws ServiceException, ClassNotFoundException {
+	public String signIn(String login, String password) throws ServiceException, UserSQLException {
 		
 		/*
 		 * if(!userDataValidation.checkAUthData(login, password)) { throw new

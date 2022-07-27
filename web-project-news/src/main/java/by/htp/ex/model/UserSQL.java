@@ -9,7 +9,7 @@ public class UserSQL implements IUserSQL{
 	DBUserInfo dbUserInfo = new DBUserInfo();	
 
 	@Override
-	public boolean UserSql(String login, String password) throws ClassNotFoundException {
+	public boolean UserSql(String login, String password) throws UserSQLException {
 						
 		ArrayList<UserInfo> log = dbUserInfo.select();
 		

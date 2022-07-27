@@ -5,6 +5,7 @@ import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.IUserDAO;
 import by.htp.ex.model.IUserSQL;
 import by.htp.ex.model.SQLProvider;
+import by.htp.ex.model.UserSQLException;
 
 public class UserDAO implements IUserDAO{
 	
@@ -12,7 +13,7 @@ public class UserDAO implements IUserDAO{
 	
 
 	@Override
-	public boolean logination(String login, String password) throws DaoException, ClassNotFoundException {			
+	public boolean logination(String login, String password) throws DaoException, UserSQLException {			
 		
 		if(userSQL.UserSql(login, password)) {
 			return true;

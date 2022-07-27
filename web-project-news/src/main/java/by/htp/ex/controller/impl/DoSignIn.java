@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.controller.Command;
+import by.htp.ex.model.UserSQLException;
 import by.htp.ex.service.ServiceException;
 import by.htp.ex.service.ServiceProvider;
 import by.htp.ex.service.IUserService;
@@ -21,7 +22,7 @@ public class DoSignIn implements Command {
 	
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserSQLException {
 		
 				
 		
