@@ -37,9 +37,11 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public boolean registration(NewUserInfo user) {
-		// TODO Auto-generated method stub
-		return true;
+	public String registration(String login, String password, String email, String tel) throws DaoException {
+		if(userDAO.registration(login, password, email, tel)) {
+			return "user";
+		}
+		return "guest";
 	}
 
 }

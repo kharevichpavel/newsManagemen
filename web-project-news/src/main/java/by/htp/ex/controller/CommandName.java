@@ -7,5 +7,6 @@ public enum CommandName {
 	GO_TO_NEWS_LIST, 
 	GO_TO_VIEW_NEWS,	
 	DO_SIGN_IN, 
-	DO_SIGN_OUT
+	DO_SIGN_OUT,
+	DO_REGISTRATION
 }

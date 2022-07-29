@@ -3,6 +3,7 @@ package by.htp.ex.controller;
 import java.io.IOException;
 
 import by.htp.ex.bean.NewUserInfo;
+import by.htp.ex.dao.DaoException;
 import by.htp.ex.model.UserSQLException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -35,6 +36,9 @@ public class FrontController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (DaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

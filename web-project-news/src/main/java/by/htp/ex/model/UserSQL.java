@@ -1,7 +1,8 @@
 package by.htp.ex.model;
 
 import java.util.ArrayList;
-import by.htp.ex.bean.DBUserInfo;
+
+import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.bean.UserInfo;
 
 public class UserSQL implements IUserSQL{
@@ -25,5 +26,17 @@ public class UserSQL implements IUserSQL{
 			return true;
 		}		
 		return false;
+	}
+
+	
+	
+	@Override
+	public boolean UserSqlRegistration(String login, String password, String email, String tel) {
+		if(dbUserInfo.insert(login, password, email, tel)!=0) {
+			return true;			
+		}
+		return false;
+		
+		
 	}
 }

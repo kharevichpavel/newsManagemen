@@ -13,22 +13,32 @@ public class UserDAO implements IUserDAO{
 	
 
 	@Override
-	public boolean logination(String login, String password) throws DaoException, UserSQLException {			
-		
+	public boolean logination(String login, String password) throws DaoException, UserSQLException {
 		if(userSQL.UserSql(login, password)) {
 			return true;
 		}		
 		return false;		
 	}
 	
-	public String getRole(String login, String password) {
-		return "user";
+	public String getRole(String login, String password) throws DaoException, UserSQLException {
+		if(logination(login, password)) {
+			return "user";
+		}
+		return "guest";
 	}
 
 	@Override
-	public boolean registration(NewUserInfo user) throws DaoException  {
-		// TODO Auto-generated method stub
-		return true;
+	public boolean registration(String login, String password, String email, String tel) throws DaoException  {
+		if(userSQL.UserSqlRegistration(login, password, email, tel)) {
+			return true;
+		}
+		return false;
 	}
-
+	
+	public String getRole(String login, String password, String email, String tel) throws DaoException, UserSQLException {
+		if(registration(login, password, email, tel)) {
+			return "user";
+		}
+		return "guest";
+	}
 }

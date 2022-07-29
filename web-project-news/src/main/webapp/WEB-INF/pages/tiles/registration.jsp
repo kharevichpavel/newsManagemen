@@ -19,7 +19,7 @@
   </div><br>
   
   <div>
-    <input type="hidden" name="command" value="go_to_registration_page" />
+    <input type="hidden" name="command" value="do_registration" />
     <input type="submit" value="Register"/>
     <button type="reset">Clear</button>
   </div>
