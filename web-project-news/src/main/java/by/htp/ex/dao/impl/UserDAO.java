@@ -26,8 +26,8 @@ public class UserDAO implements IUserDAO{
 	}
 
 	@Override
-	public boolean registration(String login, String password, String email, String tel) throws DaoException  {
-		if(userSQL.UserSqlRegistration(login, password, email, tel)) {
+	public boolean registration(String login, String password, String email, String tel) throws DaoException, UserSQLException  {
+		if(userSQL.UserSqlRegistration(login, password, email, tel) & userSQL.UserSql(login, password)) {
 			return true;
 		}
 		return false;

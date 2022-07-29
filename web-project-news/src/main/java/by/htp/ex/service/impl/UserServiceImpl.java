@@ -34,7 +34,7 @@ public class UserServiceImpl implements IUserService{
 	}
 
 	@Override
-	public String registration(String login, String password, String email, String tel) throws DaoException {
+	public String registration(String login, String password, String email, String tel) throws DaoException, UserSQLException {
 		if(userDAO.registration(login, password, email, tel)) {
 			return "user";
 		}
