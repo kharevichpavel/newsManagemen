@@ -2,7 +2,6 @@ package by.htp.ex.controller.impl;
 
 import java.io.IOException;
 
-import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.controller.Command;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.model.UserSQLException;
@@ -24,8 +23,7 @@ public class DoRegistration implements Command {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserSQLException, DaoException {
-		
-		
+				
 		String login;
 		String password;
 		String email;
@@ -36,10 +34,7 @@ public class DoRegistration implements Command {
 		email = request.getParameter(NEW_EMAIL_PARAM);
 		tel = request.getParameter(NEW_TEL_PARAM);
 		
-try {
-			
-			
-
+		try {
 			String role = service.registration(login, password, email, tel);
 
 			if (!role.equals("guest")) {
@@ -55,11 +50,6 @@ try {
 		} catch (ServiceException e) {
 			// logging e
 			// go-to error page
-
-		}
-		
-		
-		
+		}		
 	}
-
 }

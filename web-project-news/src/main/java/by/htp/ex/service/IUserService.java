@@ -1,6 +1,5 @@
 package by.htp.ex.service;
 
-import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.model.UserSQLException;
 

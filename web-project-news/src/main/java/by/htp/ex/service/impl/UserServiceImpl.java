@@ -1,6 +1,5 @@
 package by.htp.ex.service.impl;
 
-import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.dao.DaoException;
 import by.htp.ex.dao.DaoProvider;
 import by.htp.ex.dao.IUserDAO;
@@ -28,12 +27,10 @@ public class UserServiceImpl implements IUserService{
 				return userDAO.getRole(login, password);
 			}else {
 				return "guest";
-			}
-			
+			}			
 		}catch(DaoException e) {
 			throw new ServiceException(e);
-		}
-		
+		}		
 	}
 
 	@Override
@@ -43,5 +40,4 @@ public class UserServiceImpl implements IUserService{
 		}
 		return "guest";
 	}
-
 }
