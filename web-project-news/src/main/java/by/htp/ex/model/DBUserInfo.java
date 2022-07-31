@@ -4,61 +4,107 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import by.htp.ex.bean.NewUserInfo;
 import by.htp.ex.bean.UserInfo;
 
 public class DBUserInfo {
 	 private static String URL = "jdbc:mysql://127.0.0.1/newsmanagement?useSSL=false&useUnicode=true&serverTimezone=UTC";
 	 private static String ROOT = "root";
 	 private static String PASSWORD = "813150";
+	 
+	 private Connection con = null;
+	 private Statement st = null;
+	 private ResultSet resultSet = null;
 	    
 	 public ArrayList<UserInfo> select() {
 	         
 	 ArrayList<UserInfo> userDB = new ArrayList<UserInfo>();
 	    try{
 	        Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-	        try (Connection con = DriverManager.getConnection(URL, ROOT, PASSWORD)){
-	                  
-	            Statement st = con.createStatement();
-	            ResultSet resultSet = st.executeQuery("SELECT * FROM users");
-	            while(resultSet.next()){
+	        
+	        con = DriverManager.getConnection(URL, ROOT, PASSWORD);      
+	        st = con.createStatement();
+	        resultSet = st.executeQuery("SELECT * FROM users");
+	        while(resultSet.next()){
 	                      
-	                String loginUser = resultSet.getString(2);
-	                String passwordUser = resultSet.getString(3);	                    
-	                UserInfo userInfo = new UserInfo(loginUser, passwordUser);
-	                userDB.add(userInfo);	                    
-	            }
+	            String loginUser = resultSet.getString(2);
+	            String passwordUser = resultSet.getString(3);	                    
+	            UserInfo userInfo = new UserInfo(loginUser, passwordUser);
+	            userDB.add(userInfo);	                    
 	        }
-	    }
-	    catch(Exception ex){
-	        System.out.println(ex);
-	    }
-	    return userDB;
+	        
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }finally {
+            try {
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userDB;	    
 	}
 	 
 	    public int insert(String login, String password, String email, String tel) {
 	    	 
-	    	try{
+	    	try{    		
 	    		Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-	    		try (Connection conn = DriverManager.getConnection(URL, ROOT, PASSWORD)){
-       
-	    			String sql = "INSERT INTO users (loginUser, passwordUser, emailUser, telUser) Values (?, ?, ?, ?)";
-	    			try(PreparedStatement preparedStatement = conn.prepareStatement(sql)){
-	    				preparedStatement.setString(1, login);
-	    				preparedStatement.setString(2, password);
-	    				preparedStatement.setString(3, email);
-	    				preparedStatement.setString(4, tel);
+	    		con = DriverManager.getConnection(URL, ROOT, PASSWORD);       
+	    		String sql = "INSERT INTO users (loginUser, passwordUser, emailUser, telUser) Values (?, ?, ?, ?)";
+	    		try(PreparedStatement preparedStatement = con.prepareStatement(sql)){
+	    			preparedStatement.setString(1, login);
+	    			preparedStatement.setString(2, password);
+	    			preparedStatement.setString(3, email);
+	    			preparedStatement.setString(4, tel);
            
-	    				return  preparedStatement.executeUpdate();
-	    			}
-	    		}
+	    			return  preparedStatement.executeUpdate();
+	    		}	    		
 	    	}
-	    	catch(Exception ex){
-	    		System.out.println(ex);
-	    	}
+	    	catch(Exception e){
+	    		e.printStackTrace();
+	    	}finally {
+	            try {
+	                if (resultSet != null) {
+	                    resultSet.close();
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	            try {
+	                if (st != null) {
+	                    st.close();
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	            try {
+	                if (con != null) {
+	                    con.close();
+	                }
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
 	    	return 0;
 	    }
 	}
