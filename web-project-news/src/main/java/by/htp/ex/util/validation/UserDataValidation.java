@@ -1,8 +1,8 @@
 package by.htp.ex.util.validation;
 
-import org.apache.catalina.User;
+import by.htp.ex.bean.NewUserInfo;
 
 public interface UserDataValidation {
        boolean checkAUthData(String login, String password);
-       boolean checkRegistrationData(User user);
+       boolean checkRegistrationData(NewUserInfo user);
 }

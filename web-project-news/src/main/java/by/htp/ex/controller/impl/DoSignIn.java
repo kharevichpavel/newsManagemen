@@ -3,7 +3,6 @@ package by.htp.ex.controller.impl;
 import java.io.IOException;
 
 import by.htp.ex.controller.Command;
-import by.htp.ex.model.UserSQLException;
 import by.htp.ex.service.ServiceException;
 import by.htp.ex.service.ServiceProvider;
 import by.htp.ex.service.IUserService;
@@ -20,7 +19,7 @@ public class DoSignIn implements Command {
 	
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, UserSQLException {
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 				
 		
@@ -43,8 +42,8 @@ public class DoSignIn implements Command {
 				response.sendRedirect("controller?command=go_to_news_list");
 			} else {
 				request.getSession(true).setAttribute("user", "not active");
-				request.setAttribute("AuthenticationError", "wrong login or password");
-				request.getRequestDispatcher("/WEB-INF/pages/layouts/baseLayout.jsp").forward(request, response);
+				request.getSession(true).setAttribute("AuthenticationError", "wrong login or password");
+				response.sendRedirect("controller?command=go_to_base_page");
 			}
 			
 		} catch (ServiceException e) {

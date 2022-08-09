@@ -21,11 +21,12 @@
 					Enter password: <input type="password" name="password" value="" /><br />
 					<p style="height:3px"></p>
 
-					<c:if test="${not (requestScope.AuthenticationError eq null)}">
+					<c:if test="${not (sessionScope.AuthenticationError eq null)}">
 						<font color="red" style="text-transform:uppercase"> 
-						   <c:out value="${requestScope.AuthenticationError}" />&nbsp;&nbsp;
+						   <c:out value="${sessionScope.AuthenticationError}" />&nbsp;&nbsp;						   
 						</font> 
-					</c:if>					
+					</c:if>
+					<c:set var="AuthenticationError" value="" scope="session" />					
 					
 					<a href="controller?command=go_to_registration_page">Registration</a> &nbsp;&nbsp; <input type="submit" value="Sign In" /><br />
 				</form>

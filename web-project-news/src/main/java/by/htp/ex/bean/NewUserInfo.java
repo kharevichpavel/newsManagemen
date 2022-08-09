@@ -8,16 +8,18 @@ public class NewUserInfo implements Serializable {
 	
 	private String login="";
 	private String password="";
+	private String registration_date="";
 	private String email="";
 	private String tel="";
 	
 	public NewUserInfo() {}
 	
-	public NewUserInfo(String email, String tel, String login, String password) {
+	public NewUserInfo(String login, String password, String registration_date, String email, String tel) {
 		super();
 		
 		this.login=login;
 		this.password=password;
+		this.registration_date=registration_date;
 		this.email=email;
 		this.tel=tel;				
 	}	
@@ -45,6 +47,14 @@ public class NewUserInfo implements Serializable {
 	}
 	public void setTel(String tel) {
 		this.tel = tel;
+	}
+
+	public String getRegistration_date() {
+		return registration_date;
+	}
+
+	public void setRegistration_date(String registration_date) {
+		this.registration_date = registration_date;
 	}
 	
 	
